@@ -1,0 +1,12 @@
+version: '3'
+services:
+  dev:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    working_dir: /src/api-demo
+    ports:
+      - 5072:5072
+    volumes:
+      - ./:/src
+      - ./api-demo:/src/api-demo
+    # binding host "0.0.0.0", or you can't access on real machine
+    command: dotnet run --urls "http://0.0.0.0:5072"
