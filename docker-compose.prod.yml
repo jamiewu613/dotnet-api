@@ -1,9 +1,31 @@
-version: '3'
+version: '3.9'
 services:
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 9000:80
+    depends_on:
+      - backend
   backend:
+    image: api-demo:${TAG:-latest}
     build:
       dockerfile: api-demo/Dockerfile
       context: .
       target: final
-    ports:
-      - 8080:8080
+    # ports:
+    #   - 9000:8080
+    # # Not working for `replicated` mode, cause of there are no ports exposed
+    # healthcheck:
+    #   test: 
+    #     - "CMD-SHELL"
+    #     - "curl http://localhost:9000/Health || exit 1"
+    # #
+    # deploy:
+    #   mode: replicated
+    #   replicas: 5
+    #   # update_config:
+    #   #   order: start-first
+    #   #   failure_action: rollback
+    #   #   delay: 5s
