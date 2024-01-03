@@ -1,0 +1,17 @@
+{
+  "name": "dotnet-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jamiewu613/dotnet-api.git",
+  "author": "Jamie Wu <jamie.wu@dotcomintl.com>",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "admin-ui"
+    ]
+  },
+  "private": true,
+  "scripts": {
+    "admin": "yarn workspace admin-ui"
+  }
+}
