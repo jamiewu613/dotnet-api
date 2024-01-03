@@ -12,6 +12,7 @@
   },
   "private": true,
   "scripts": {
-    "admin": "yarn workspace admin-ui"
+    "admin": "yarn workspace admin-ui",
+    "dev": "docker-compose up -d --force-recreate"
   }
 }

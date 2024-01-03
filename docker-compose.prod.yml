@@ -8,6 +8,24 @@ services:
       - 9000:80
     depends_on:
       - backend
+      - admin
+  admin:
+    image: admin-ui:${TAG:-latest}
+    build:
+      dockerfile: Dockerfile.admin-ui
+      context: .
+      target: production
+    # ports:
+    #   - 9001:3000
+    environment:
+      - BASE_URL=/admin/
+    # deploy:
+    #   mode: replicated
+    #   replicas: 5
+    #   # update_config:
+    #   #   order: start-first
+    #   #   failure_action: rollback
+    #   #   delay: 5s
   backend:
     image: api-demo:${TAG:-latest}
     build:
